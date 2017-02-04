@@ -1,0 +1,24 @@
+q1:
+  title: AAA
+  detail: flag is 123
+  point: 100
+q2:
+  title: BBB
+  detail: flag is 456
+  point: 200
+q3:
+  title: CCC
+  detail: flag is 789
+  point: 300
+  choices:
+    - 789
+    - abc
+    - xyz
+q4:
+  title: Gunma University Location
+  detail: 群馬大学の位置情報をくれ
+  point: 500
+q5:
+  title: 歌うムーン
+  detail: ムーンが歌っている無料スタンプを送信しろ
+  point: 100
