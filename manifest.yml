@@ -6,5 +6,5 @@ applications:
   name: scorebot4line
   host: scorebot4line
   disk_quota: 1024M
-  command: scorebot4line
+  command: scorebot
   buildpack: https://github.com/cloudfoundry/go-buildpack.git
