@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/matsubara0507/scorebot",
-	"GoVersion": "go1.7.",
+	"GoVersion": "go1.6.1",
 	"GodepVersion": "v74",
 	"Packages": [
 		"./..."
