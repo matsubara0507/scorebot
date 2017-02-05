@@ -1,1 +1,1 @@
-web: scorebot
+web: scorebot4line
