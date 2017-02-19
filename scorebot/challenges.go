@@ -1,9 +1,10 @@
 package scorebot
 
 import (
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"sort"
+
+	"gopkg.in/yaml.v2"
 )
 
 type Challenge struct {
