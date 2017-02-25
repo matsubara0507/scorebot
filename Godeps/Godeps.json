@@ -17,6 +17,11 @@
 			"Rev": "8df6253d1317616f36b0c3740eb30c239a7372cb"
 		},
 		{
+			"ImportPath": "github.com/lib/pq/oid",
+			"Comment": "go1.0-cutoff-141-g8df6253",
+			"Rev": "8df6253d1317616f36b0c3740eb30c239a7372cb"
+		},
+		{
 			"ImportPath": "github.com/line/line-bot-sdk-go/linebot",
 			"Comment": "1.0.0-43-gc6a4345",
 			"Rev": "c6a434596b2b11dbd64a363b0bd34a5ad056c940"
@@ -24,6 +29,14 @@
 		{
 			"ImportPath": "github.com/mattn/sorter",
 			"Rev": "b7e37418485e7c2d6a2d3a6e91eb1a001270a9d6"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "60c41d1de8da134c05b7b40154a9a82bf5b7edb9"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context/ctxhttp",
+			"Rev": "60c41d1de8da134c05b7b40154a9a82bf5b7edb9"
 		},
 		{
 			"ImportPath": "gopkg.in/kyokomi/emoji.v1",
