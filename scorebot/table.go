@@ -99,7 +99,7 @@ func MakeUserTableImpl(databaseUrl string, challengesYaml string, sqlInfo SQLInf
 			if err != nil {
 				return err
 			}
-			query := sqlInfo.UpdateUserSQL(userId, fmt.Sprintf("%s = %v", value, userId))
+			query := sqlInfo.UpdateUserSQL(userId, fmt.Sprintf("%s = %v", challengeId, value))
 			_, err = db.Exec(query)
 			return err
 		},
