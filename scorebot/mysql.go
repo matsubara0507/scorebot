@@ -3,12 +3,12 @@ package scorebot
 import (
 	"fmt"
 
-	_ "github.com/lib/pq"
+	_ "github.com/go-sql-driver/mysql"
 )
 
-func PostgreSQLInfo() SQLInfo {
+func MySQLInfo() SQLInfo {
 	return SQLInfo{
-		SQLName: "postgres",
+		SQLName: "mysql",
 		CountUserSQL: func(userId string) string {
 			return fmt.Sprintf("SELECT COUNT(*) FROM users WHERE userid = '%s';", userId)
 		},
@@ -26,10 +26,10 @@ func PostgreSQLInfo() SQLInfo {
 	}
 }
 
-func MakeUserTableImplPostgreSQL(databaseUrl string, challengesYaml string) UserTable {
-	return MakeUserTableImpl(databaseUrl, challengesYaml, PostgreSQLInfo())
+func MakeUserTableImplMySQL(databaseUrl string, challengesYaml string) UserTable {
+	return MakeUserTableImpl(databaseUrl, challengesYaml, MySQLInfo())
 }
 
-func MakeChallengeTableImplPostgreSQL(databaseUrl string) ChallengeTable {
-	return MakeChallengeTableImpl(databaseUrl, PostgreSQLInfo())
+func MakeChallengeTableImplMySQL(databaseUrl string) ChallengeTable {
+	return MakeChallengeTableImpl(databaseUrl, MySQLInfo())
 }

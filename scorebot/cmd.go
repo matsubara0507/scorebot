@@ -10,14 +10,16 @@ import (
 	"gopkg.in/kyokomi/emoji.v1"
 )
 
+type CmdType string
+
 const (
-	ScoreBotCmdChallenges string = ":challenges"
-	ScoreBotCmdHelp       string = ":help"
-	ScoreBotCmdNavBar     string = ":navbar"
-	ScoreBotCmdRanking    string = ":ranking"
-	ScoreBotCmdReset      string = ":reset"
-	ScoreBotCmdRule       string = ":rule"
-	ScoreBotCmdScore      string = ":score"
+	ScoreBotCmdChallenges CmdType = ":challenges"
+	ScoreBotCmdHelp       CmdType = ":help"
+	ScoreBotCmdNavBar     CmdType = ":navbar"
+	ScoreBotCmdRanking    CmdType = ":ranking"
+	ScoreBotCmdReset      CmdType = ":reset"
+	ScoreBotCmdRule       CmdType = ":rule"
+	ScoreBotCmdScore      CmdType = ":score"
 )
 
 func MakeChallengesMessage(challenges Challenges) []*linebot.CarouselTemplate {
@@ -44,23 +46,22 @@ func MakeChallengeMessage(challengeId string, challenges Challenges) []linebot.M
 	challenge, exist := challenges[challengeId]
 	if !exist {
 		message := linebot.NewTextMessage(challengeId + " is undefined as challenge.")
-		messages = append(messages, message)
-	} else {
-		format := `%s: %s
+		return append(messages, message)
+	}
+	format := `%s: %s
 Point: %d
 
 %s`
-		text := fmt.Sprintf(format, challengeId, challenge.Title, challenge.Point, challenge.Detail)
-		messages = append(messages, linebot.NewTextMessage(text))
-		if len(challenge.Choices) != 0 {
-			title := fmt.Sprintf("%s: %s", challengeId, challenge.Title)
-			var choicesMessages []linebot.TemplateAction
-			for _, text := range challenge.Choices {
-				choicesMessages = append(choicesMessages, linebot.NewMessageTemplateAction(text, text))
-			}
-			template := linebot.NewButtonsTemplate("", title, "次から選べ", choicesMessages...)
-			messages = append(messages, linebot.NewTemplateMessage("選択肢", template))
+	text := fmt.Sprintf(format, challengeId, challenge.Title, challenge.Point, challenge.Detail)
+	messages = append(messages, linebot.NewTextMessage(text))
+	if len(challenge.Choices) != 0 {
+		title := fmt.Sprintf("%s: %s", challengeId, challenge.Title)
+		var choicesMessages []linebot.TemplateAction
+		for _, text := range challenge.Choices {
+			choicesMessages = append(choicesMessages, linebot.NewMessageTemplateAction(text, text))
 		}
+		template := linebot.NewButtonsTemplate("", title, "次から選べ", choicesMessages...)
+		messages = append(messages, linebot.NewTemplateMessage("選択肢", template))
 	}
 	return messages
 }
@@ -113,11 +114,15 @@ func MakeResultMessage(result bool) *linebot.TextMessage {
 }
 
 func MakeNavBarMessage() *linebot.ButtonsTemplate {
-	score := linebot.NewMessageTemplateAction("My Score", ":score")
-	challenges := linebot.NewMessageTemplateAction("Challenges", ":challenges")
-	ranking := linebot.NewMessageTemplateAction("Ranking", ":ranking")
-	rule := linebot.NewMessageTemplateAction("Rule", ":rule")
-	return linebot.NewButtonsTemplate("", "ナビゲーションバー", "コマンド以外を入力するとフラグとして認識されます\n:help で他のコマンドも見れます", score, challenges, ranking, rule)
+	return linebot.NewButtonsTemplate(
+		"",
+		"ナビゲーションバー",
+		"コマンド以外を入力するとフラグとして認識されます\n:help で他のコマンドも見れます",
+		linebot.NewMessageTemplateAction("My Score", ":score"),
+		linebot.NewMessageTemplateAction("Challenges", ":challenges"),
+		linebot.NewMessageTemplateAction("Ranking", ":ranking"),
+		linebot.NewMessageTemplateAction("Rule", ":rule"),
+	)
 }
 
 func MakeHelpMessage() *linebot.TextMessage {

@@ -47,7 +47,7 @@ func main() {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
 					texts := strings.Split(message.Text, " ")
-					switch texts[0] {
+					switch scorebot.CmdType(texts[0]) {
 					case scorebot.ScoreBotCmdChallenges:
 						if len(texts) <= 1 {
 							challengesMessages := scorebot.MakeChallengesMessage(challenges)

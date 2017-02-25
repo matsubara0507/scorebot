@@ -7,12 +7,12 @@
 	],
 	"Deps": [
 		{
-			"ImportPath": "github.com/lib/pq",
-			"Comment": "go1.0-cutoff-141-g8df6253",
-			"Rev": "8df6253d1317616f36b0c3740eb30c239a7372cb"
+			"ImportPath": "github.com/go-sql-driver/mysql",
+			"Comment": "v1.3-2-g2e00b5c",
+			"Rev": "2e00b5cd70399450106cec6431c2e2ce3cae5034"
 		},
 		{
-			"ImportPath": "github.com/lib/pq/oid",
+			"ImportPath": "github.com/lib/pq",
 			"Comment": "go1.0-cutoff-141-g8df6253",
 			"Rev": "8df6253d1317616f36b0c3740eb30c239a7372cb"
 		},
@@ -24,14 +24,6 @@
 		{
 			"ImportPath": "github.com/mattn/sorter",
 			"Rev": "b7e37418485e7c2d6a2d3a6e91eb1a001270a9d6"
-		},
-		{
-			"ImportPath": "golang.org/x/net/context",
-			"Rev": "60c41d1de8da134c05b7b40154a9a82bf5b7edb9"
-		},
-		{
-			"ImportPath": "golang.org/x/net/context/ctxhttp",
-			"Rev": "60c41d1de8da134c05b7b40154a9a82bf5b7edb9"
 		},
 		{
 			"ImportPath": "gopkg.in/kyokomi/emoji.v1",
