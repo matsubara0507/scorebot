@@ -1,9 +1,10 @@
 package scorebot
 
 import (
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"sort"
+
+	"gopkg.in/yaml.v2"
 )
 
 type Challenge struct {
@@ -28,8 +29,10 @@ func ReadChallengesYaml(challengesYaml string) (Challenges, error) {
 	}
 
 	challenges := make(map[string]Challenge)
-	yaml.Unmarshal(buf, &challenges)
-
+	err = yaml.Unmarshal(buf, &challenges)
+	if err != nil {
+		return nil, err
+	}
 	return challenges, nil
 }
 

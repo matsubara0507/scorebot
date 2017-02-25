@@ -23,8 +23,8 @@ func main() {
 	databaseUrl := os.Getenv("DATABASE_URL")
 	challengesYaml := "challenges.yaml"
 
-	userTable := scorebot.MakeUserTableImplPostgreSQL(databaseUrl, challengesYaml)
-	challengeTable := scorebot.MakeChallengeTableImplPostgreSQL(databaseUrl)
+	userTable := scorebot.MakeUserTableImplMySQL(databaseUrl, challengesYaml)
+	challengeTable := scorebot.MakeChallengeTableImplMySQL(databaseUrl)
 
 	// Setup HTTP Server for receiving requests from LINE platform
 	http.HandleFunc("/callback", func(w http.ResponseWriter, req *http.Request) {
@@ -47,7 +47,7 @@ func main() {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
 					texts := strings.Split(message.Text, " ")
-					switch texts[0] {
+					switch scorebot.CmdType(texts[0]) {
 					case scorebot.ScoreBotCmdChallenges:
 						if len(texts) <= 1 {
 							challengesMessages := scorebot.MakeChallengesMessage(challenges)
